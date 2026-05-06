@@ -1,0 +1,25 @@
+#Aaron's Config file for CircleCI
+# cimg/python didn't work
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.9
+    working_directory: ~/aaron_capt1
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            . aaron_capt1/bin/activate &&
+            pip install -r requirements.txt
+      - run:
+            name: run tests
+            command:
+              .  calculator/bin/activate &&
+              python -m pytest tests/ -v --cov
+workflows:
+  version: 2
+  build:
+    jobs: 
+      - build

@@ -1,4 +1,10 @@
-import pytest 
+import pytest
+import sys
+#Issues with path so had to implement
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 from part1 import *
 
 "Unit tests for part1 function"
@@ -49,6 +55,5 @@ def test_none_input():
 
 
 def test_float_input():
-    """Test that float deposits work correctly"""
     result = calculate_interest(1500.50)
     assert result == "47.52"
